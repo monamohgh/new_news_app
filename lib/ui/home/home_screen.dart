@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/l10n/app_localizations.dart';
-import 'package:news_app/ui/home/category_details/source/category_details.dart';
 import 'package:news_app/ui/home/drawer/home_drawer.dart';
 import 'package:news_app/utils/app_colors.dart';
 

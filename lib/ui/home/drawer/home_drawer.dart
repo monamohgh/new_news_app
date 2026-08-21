@@ -26,7 +26,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
     var height = context.height;
-    var width = context.width;
     var languageProvider = Provider.of<AppLanguageProvider>(context);
     var themeProvider = Provider.of<AppThemeProvider>(context);
     return Column(
@@ -78,7 +77,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
       //todo:show language  bottom sheet
       showLanguageBottomSheet();
     },
-
     ),
       ],
     );

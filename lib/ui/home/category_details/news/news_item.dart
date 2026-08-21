@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/ui/home/widget/main_loading_widget.dart';
-import 'package:news_app/utils/app_styles.dart';
 import 'package:news_app/utils/size_utils.dart';
 import '../../../../api/model/news/news.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/l10n/app_localizations.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/app_styles.dart';
 import 'package:news_app/utils/size_utils.dart';
