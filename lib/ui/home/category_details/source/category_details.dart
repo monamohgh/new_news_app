@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/api/model/source/source_response.dart';
+import 'package:news_app/l10n/app_localizations.dart';
+import 'package:news_app/ui/home/category_details/source/source_widget.dart';
+import 'package:news_app/ui/home/widget/main_error_widget.dart';
+import 'package:news_app/ui/home/widget/main_loading_widget.dart';
+class  CategoryDetails extends StatefulWidget {
+  const  CategoryDetails({super.key});
+
+  @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<SourceResponse>(
+        future: ApiManager.getSources(),
+        builder: (context, snapshot){
+          //todo:loading
+          if(snapshot.connectionState==ConnectionState.waiting){
+            return MainLoadingWidget();
+          }else if(snapshot.hasError){
+            //todo:error
+            return MainErrorWidget(
+                errorMessage: AppLocalizations.of(context)!.something_went_wrong,
+                onPressed: (){
+                  //todo:try again
+                    ApiManager.getSources();
+                    setState(() {
+
+                    });
+                }
+            );
+          }else{
+            //todo:server has response with data
+            //todo:response=>success,error
+            if(snapshot.data?.status!='ok'){
+              //todo:server=>response=>error
+              return MainErrorWidget(
+                  errorMessage: snapshot.data!.message!,
+                  onPressed: (){
+                    //todo:try again
+                    ApiManager.getSources();
+                    setState(() {
+
+                    });
+
+                  }
+              );
+            }else{
+              //todo:server=>response=>success
+              var sourcesList=snapshot.data?.sources??[];
+              return SourceWidget(sourcesList: sourcesList);
+
+            }
+          }
+        },
+    );
+  }
+}

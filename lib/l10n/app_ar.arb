@@ -1,0 +1,28 @@
+{
+  "home": "الرئيسية",
+  "good_morning": "صباح الخير",
+  "here_is_some_news_for_you": "إليك بعض الأخبار",
+  "general": "عام",
+  "business": "أعمال",
+  "sports": "رياضة",
+  "technology": "تكنولوجيا",
+  "entertainment": "ترفيه",
+  "health": "صحة",
+  "science": "علوم",
+  "view_all": "عرض الكل",
+  "news_app": "تطبيق الأخبار",
+  "go_to_home": "الذهاب للرئيسية",
+  "theme": "المظهر",
+  "dark": "داكن",
+  "light": "فاتح",
+  "language": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "View_full_article": "عرض المقال كاملاً",
+  "search": "بحث",
+  "try_again":"حاول مرة أخرى",
+  "something_went_wrong":"حدث خطأ",
+  "no_news_found":"لا يوجد أخبار"
+
+
+}
