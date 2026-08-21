@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/l10n/app_localizations.dart';
+import 'package:news_app/ui/home/category_fragment/category_fragment.dart';
 import 'package:news_app/ui/home/drawer/drawer_item.dart';
 import 'package:news_app/ui/home/drawer/theme_bottom_sheet.dart';
 import 'package:news_app/utils/app_assets.dart';
@@ -16,7 +17,9 @@ import 'divider_item.dart';
 import 'language_bottom_sheet.dart';
 
 class HomeDrawer extends StatefulWidget {
-  const HomeDrawer({super.key});
+  final VoidCallback onDrawerItemClick;
+
+  const HomeDrawer({super.key,required this.onDrawerItemClick});
 
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();
@@ -42,6 +45,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         InkWell(
           onTap: () {
             //todo:go to home
+            widget.onDrawerItemClick();
           },
           child: DrawerItem(
             icon: SvgPicture.asset(AppAssets.homeIcon),
@@ -81,12 +85,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ],
     );
   }
+
   void showLanguageBottomSheet(){
     showModalBottomSheet(
       context: context,
       builder:(context) => LanguageBottomSheet(),
     );
   }
+
   void showThemeBottomSheet(){
     showModalBottomSheet(
       context: context,

@@ -24,6 +24,14 @@ class AppStyles {
     fontSize: 24,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
+  );static TextStyle medium30White = GoogleFonts.inter(
+    fontSize: 30,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+  );static TextStyle medium30Black = GoogleFonts.inter(
+    fontSize: 30,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
   );
   static TextStyle medium24Black = GoogleFonts.inter(
     fontSize: 24,

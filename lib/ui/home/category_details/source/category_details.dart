@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/api/model/category/category.dart';
 import 'package:news_app/api/model/source/source_response.dart';
 import 'package:news_app/l10n/app_localizations.dart';
 import 'package:news_app/ui/home/category_details/source/source_widget.dart';
 import 'package:news_app/ui/home/widget/main_error_widget.dart';
 import 'package:news_app/ui/home/widget/main_loading_widget.dart';
 class  CategoryDetails extends StatefulWidget {
-  const  CategoryDetails({super.key});
+  const  CategoryDetails({super.key,required this.category});
+  final Category category;
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -16,7 +18,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SourceResponse>(
-        future: ApiManager.getSources(),
+        future: ApiManager.getSources(widget.category.id),
         builder: (context, snapshot){
           //todo:loading
           if(snapshot.connectionState==ConnectionState.waiting){
@@ -27,7 +29,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 errorMessage: AppLocalizations.of(context)!.something_went_wrong,
                 onPressed: (){
                   //todo:try again
-                    ApiManager.getSources();
+                    ApiManager.getSources(widget.category.id);
                     setState(() {
 
                     });
@@ -42,7 +44,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   errorMessage: snapshot.data!.message!,
                   onPressed: (){
                     //todo:try again
-                    ApiManager.getSources();
+                    ApiManager.getSources(widget.category.id);
                     setState(() {
 
                     });
