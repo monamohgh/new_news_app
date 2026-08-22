@@ -38,12 +38,12 @@ class ApiManager {
 
 /*https://newsapi.org/v2/everything?q=bitcoin&apiKey=
 864cbf8e0e4e451da80a4f3b02de5cf9*/
-  static Future<NewsResponse> getNewsBySourceId(String sourceId) async {
+  static Future<NewsResponse> getNewsBySourceId(String sourceId,) async {
     try {
       Uri url = Uri.https(ApiConstants.baseUrl, EndPoints.newsApi,
           {
             'apiKey': ApiConstants.apiKey ,
-            'sources': sourceId
+            'sources': sourceId,
           }
       );
       var response = await http.get(url);
@@ -54,4 +54,20 @@ class ApiManager {
       rethrow;
     }
   }
+  // static Future<NewsResponse> getNewsBySearch(String query, int page) async {
+  //   try {
+  //     Uri url = Uri.https(ApiConstants.baseUrl,EndPoints.newsApi, {
+  //       'apiKey': ApiConstants.apiKey,
+  //       'q': query,
+  //       'pageSize': '10',
+  //       'page': page.toString(),
+  //     });
+  //     var response = await http.get(url);
+  //     var responseBody = response.body;
+  //     var json = jsonDecode(responseBody);
+  //     return NewsResponse.fromJson(json);
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 }

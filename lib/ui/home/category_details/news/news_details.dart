@@ -27,39 +27,41 @@ class _NewsDetailsState extends State<NewsDetails> {
       decoration: BoxDecoration(
         color:Theme.of(context).splashColor
       ),
-      child: Column(
-        spacing: height*.01,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (widget.news.urlToImage != null && widget.news.urlToImage!.isNotEmpty)
-            ClipRRect(
-              borderRadius:  BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                imageUrl: widget.news.urlToImage!,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: height*.01,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.news.urlToImage != null && widget.news.urlToImage!.isNotEmpty)
+              ClipRRect(
+                borderRadius:  BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  imageUrl: widget.news.urlToImage!,
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
+            Text(widget.news.content ?? '', style: Theme.of(context).textTheme.titleMedium),
+            CustomElevatedButton(
+              radius: 16,
+              verticalPadding: height*.02,
+              onPressed: () {
+                //todo:view full article
+                if(widget.news.url!=null&&widget.news.url!.isNotEmpty){
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => NewsWebView(url: widget.news.url!),)
+                  );
+                }
+              },
+              child: Text(
+                AppLocalizations.of(context)!.view_full_article,
+                  style: Theme.of(context).textTheme.labelLarge,
+              ),
+              backgroundColor:Theme.of(context).primaryColor
             ),
-          Text(widget.news.content ?? '', style: Theme.of(context).textTheme.titleMedium),
-          CustomElevatedButton(
-            radius: 16,
-            verticalPadding: height*.02,
-            onPressed: () {
-              //todo:view full article
-              if(widget.news.url!=null&&widget.news.url!.isNotEmpty){
-                Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => NewsWebView(url: widget.news.url!),)
-                );
-              }
-            },
-            child: Text(
-              AppLocalizations.of(context)!.view_full_article,
-                style: Theme.of(context).textTheme.labelLarge,
-            ),
-            backgroundColor:Theme.of(context).primaryColor
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -79,4 +79,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get no_news_found => 'No News Found';
+
+  @override
+  String get no_news_matching_found => 'No News Matching Found';
 }

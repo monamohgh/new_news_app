@@ -241,6 +241,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No News Found'**
   String get no_news_found;
+
+  /// No description provided for @no_news_matching_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No News Matching Found'**
+  String get no_news_matching_found;
 }
 
 class _AppLocalizationsDelegate

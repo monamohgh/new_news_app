@@ -49,7 +49,6 @@ class _NewsWebViewState extends State<NewsWebView> {
              const Center(
                child: MainLoadingWidget(),
              )
-
         ],
       ),
     );

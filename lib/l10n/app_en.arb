@@ -22,5 +22,6 @@
 "search":"Search",
 "try_again":"Try Again",
 "something_went_wrong":"Something Went Wrong",
-"no_news_found":"No News Found"
+"no_news_found":"No News Found",
+"no_news_matching_found":"No News Matching Found"
 }
