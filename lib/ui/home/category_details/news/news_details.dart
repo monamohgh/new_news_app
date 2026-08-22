@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/l10n/app_localizations.dart';
+import 'package:news_app/ui/home/category_details/news/news_web_view.dart';
 import 'package:news_app/ui/home/widget/custom_elevauted_button.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/size_utils.dart';
@@ -17,7 +18,6 @@ class NewsDetails extends StatefulWidget {
 }
 
 class _NewsDetailsState extends State<NewsDetails> {
-  late final WebViewController _controller;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,14 @@ class _NewsDetailsState extends State<NewsDetails> {
           CustomElevatedButton(
             radius: 16,
             verticalPadding: height*.02,
-            onPressed: () {},
+            onPressed: () {
+              //todo:view full article
+              if(widget.news.url!=null&&widget.news.url!.isNotEmpty){
+                Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => NewsWebView(url: widget.news.url!),)
+                );
+              }
+            },
             child: Text(
               AppLocalizations.of(context)!.view_full_article,
                 style: Theme.of(context).textTheme.labelLarge,
