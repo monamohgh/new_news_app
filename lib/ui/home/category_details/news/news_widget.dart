@@ -6,6 +6,7 @@ import 'package:news_app/ui/home/widget/main_error_widget.dart';
 import 'package:news_app/ui/home/widget/main_loading_widget.dart';
 import 'package:news_app/utils/size_utils.dart';
 
+import '../../../../api/dio_manager.dart';
 import '../../../../api/model/news/news_response.dart';
 import '../../../../api/model/source/source.dart';
 
@@ -22,7 +23,7 @@ class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<NewsResponse>(
-      future: ApiManager.getNewsBySourceId(widget.source.id ?? ''),
+      future: DioManager().getNewsBySourceId(widget.source.id ?? ''),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MainLoadingWidget();
@@ -30,7 +31,7 @@ class _NewsWidgetState extends State<NewsWidget> {
           return MainErrorWidget(
             errorMessage: AppLocalizations.of(context)!.something_went_wrong,
             onPressed: () {
-              ApiManager.getNewsBySourceId(widget.source.id ?? '');
+              DioManager().getNewsBySourceId(widget.source.id ?? '');
               setState(() {
 
               });
@@ -40,7 +41,7 @@ class _NewsWidgetState extends State<NewsWidget> {
           return MainErrorWidget(
             errorMessage: snapshot.data!.message!,
             onPressed: () {
-              ApiManager.getNewsBySourceId(widget.source.id ?? '');
+              DioManager().getNewsBySourceId(widget.source.id ?? '');
               setState(() {
 
               });
