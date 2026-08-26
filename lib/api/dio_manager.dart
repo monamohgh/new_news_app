@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/api/api_constants.dart';
+import 'package:news_app/api/dio_interceptor.dart';
 import 'package:news_app/api/end_points.dart';
 import 'package:news_app/api/model/news/news_response.dart';
 import 'package:news_app/api/model/source/source_response.dart';
@@ -10,9 +11,12 @@ class DioManager {
      /// we use BaseOptions when we have common things between APIs
       BaseOptions(
           baseUrl: 'https://newsapi.org',
-        queryParameters: {
-          'apiKey':ApiConstants.apiKey,
-        },
+        // queryParameters: {
+        //   'apiKey':ApiConstants.apiKey,
+        // },
+        // headers: {
+        //     'X-Api-Key':ApiConstants.apiKey
+        // },
         sendTimeout: Duration(seconds: 5),
         receiveTimeout: Duration(seconds: 5),
       )
@@ -28,6 +32,8 @@ class DioManager {
    /// The second way in the constructor
    /// but to execute the PrettyDioLogger by the constructor we should call the constructor DioManager
    DioManager(){
+     /// added DioInterceptor first to show the details in PrettyDioLogger
+     dio.interceptors.add(DioInterceptor());
      dio.interceptors.add(PrettyDioLogger(
            requestHeader: true,
            requestBody: true,

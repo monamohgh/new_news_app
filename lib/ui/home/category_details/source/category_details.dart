@@ -25,9 +25,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           if(snapshot.connectionState==ConnectionState.waiting){
             return MainLoadingWidget();
           }else if(snapshot.hasError){
-            //todo:error
+            //todo: error=>from client or server
             return MainErrorWidget(
-                errorMessage: AppLocalizations.of(context)!.something_went_wrong,
+                errorMessage:snapshot.error.toString(),
                 onPressed: (){
                   //todo:try again
                   DioManager().getSources(widget.category.id);
@@ -36,9 +36,12 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     });
                 }
             );
-          }else{
+          }else {
             //todo:server has response with data
             //todo:response=>success,error
+            //todo:server=>response=>success
+            var sourcesList=snapshot.data?.sources??[];
+            return SourceWidget(sourcesList: sourcesList);
             if(snapshot.data?.status!='ok'){
               //todo:server=>response=>error
               return MainErrorWidget(
