@@ -11,6 +11,11 @@ class SourceViewModel extends ChangeNotifier{
   bool isLoading =false;
   /// the logic
   void getSources(String categoryId)async{
+    //todo:reinitialize=>when error happen and click rty again=>show loading
+    sourcesList=null;//show loading
+    errorMessage=null;
+    isLoading=false;
+    notifyListeners();
 try{
   //todo:loading
   isLoading=true;
