@@ -34,9 +34,11 @@ class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context)=>viewModel,
+      create: (context)=>viewModel,
         ///Consumer=>listen to the view model
         child:Consumer<NewsViewModel>(
+          ///child=>Widget?=>like const don't rebuild again when call notify listener
+          child: Text('Hello',style: Theme.of(context).textTheme.bodySmall,),
             builder:(context, viewModel, child) {
              if(viewModel.isLoading){
                //todo:loading
@@ -65,7 +67,12 @@ class _NewsWidgetState extends State<NewsWidget> {
                            )
                          : ListView.separated(
                              itemBuilder: (context, index) {
-                               return NewsItem(news: newsList[index]);
+                               return Column(
+                                 children: [
+                                   child!,
+                                   NewsItem(news: newsList[index]),
+                                 ],
+                               );
                              },
                              itemCount: newsList.length,
                              separatorBuilder: (context, index) {
