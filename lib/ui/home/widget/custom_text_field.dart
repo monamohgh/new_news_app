@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../providers/app_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 typedef OnChanged =void Function(String)?;
 typedef OnValidator =String? Function(String?)?;
@@ -24,7 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final OnSearch onSearch;
-  CustomTextFormField({super.key,  this.maxLines=1,required this.borderColor,this.radius,this.filled,this.fillColor,
+  const CustomTextFormField({super.key,  this.maxLines=1,required this.borderColor,this.radius,this.filled,this.fillColor,
     this.hintText,this.labelText,this.hintStyle,this.labelStyle,
     this.prefixIcon,this.suffixIcon,
     this.onChanged,this.controller,
@@ -36,7 +33,6 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<AppThemeProvider>(context);
     return TextFormField(
       decoration: InputDecoration(
         enabledBorder: builtDecorationBorder(

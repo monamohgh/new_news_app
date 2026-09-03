@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:news_app/l10n/app_localizations.dart';
-import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:news_app/utils/app_assets.dart';
-import 'package:provider/provider.dart';
 
 class Category {
   String id;

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/model/category/category.dart';
 import 'package:news_app/l10n/app_localizations.dart';
-import 'package:news_app/providers/app_language_provider.dart';
-import 'package:news_app/providers/app_theme_provider.dart';
+
 import 'package:news_app/utils/app_colors.dart';
-import 'package:provider/provider.dart';
 
 import '../../../utils/size_utils.dart';
 
@@ -19,8 +17,6 @@ class CategoryItem extends StatelessWidget {
     var width = context.width;
     var height = context.height;
     var isEven = (index % 2 == 0);
-    var themProvider = Provider.of<AppThemeProvider>(context);
-    var languageProvider = Provider.of<AppLanguageProvider>(context);
     return Stack(
       alignment: isEven ? Alignment.bottomRight : Alignment.bottomLeft,
       children: [

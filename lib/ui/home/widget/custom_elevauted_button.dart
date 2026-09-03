@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../providers/app_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 
 class CustomElevatedButton extends StatelessWidget {
@@ -12,7 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   final double? verticalPadding;
   final double? radius;
 
-  CustomElevatedButton({
+  const CustomElevatedButton({super.key,
     required this.child,
     this.onPressed,required this.backgroundColor,this.verticalPadding,
     this.radius,
@@ -20,15 +18,14 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<AppThemeProvider>(context);
-    var currentMode = themeProvider.isDarkMode()
-        ? ThemeMode.dark
-        : ThemeMode.light;
+    // var themeProvider = Provider.of<AppThemeProvider>(context);
+    // var currentMode = themeProvider.isDarkMode()
+    //     ? ThemeMode.dark
+    //     : ThemeMode.light;
     return Container(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: child,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(vertical: verticalPadding??0),
           backgroundColor: backgroundColor??AppColors.transparentColor,
@@ -41,6 +38,8 @@ class CustomElevatedButton extends StatelessWidget {
 
           ),
         ),
+        child: child,
+
       ),
     );
   }

@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'dart:io';
 class AppColors {
   static Color transparentColor = Colors.transparent;
   static Color whiteColor=Colors.white;

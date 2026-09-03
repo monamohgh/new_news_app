@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/l10n/app_localizations.dart';
 import 'package:news_app/ui/home/category_details/news/news_web_view.dart';
 import 'package:news_app/ui/home/widget/custom_elevauted_button.dart';
-import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/size_utils.dart';
 import '../../../../api/model/news/news.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsDetails extends StatefulWidget {
   final News news;
@@ -54,11 +52,12 @@ class _NewsDetailsState extends State<NewsDetails> {
                   );
                 }
               },
+              backgroundColor:Theme.of(context).primaryColor,
               child: Text(
                 AppLocalizations.of(context)!.view_full_article,
-                  style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.labelLarge,
               ),
-              backgroundColor:Theme.of(context).primaryColor
+
             ),
           ],
         ),
