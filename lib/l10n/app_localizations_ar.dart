@@ -81,5 +81,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get no_news_found => 'لا يوجد أخبار';
 
   @override
-  String get no_news_matching_found => 'لا يوجد أخبار متطابقةس';
+  String get no_news_matching_found => 'لا يوجد أخبار متطابقة';
 }
