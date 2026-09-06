@@ -20,35 +20,50 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   ///CategoryDetails=>View=>UI
   ///every view know its view model by creating object from it (view model)
   SourceViewModel viewModel = SourceViewModel();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.getSources(widget.category.id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    ///BlocBuilder<BlocA, BlocAState>
-    return BlocBuilder<SourceViewModel, SourceStates>(
-      builder: (context, state) {
-        ///state object from the parent
-        ///to check the object type =>is
-        if (state is SourceLoadingStates) {
-          //todo:loading
-          return MainLoadingWidget();
-        } else if (state is SourceErrorStates) {
-          //TODO:error
-          return MainErrorWidget(
-              errorMessage: state.errorMessage,
-              onPressed: () {
-                //todo:try again
-                viewModel.getSources(widget.category.id);
-              }
-          );
-        } else if (state is SourceSuccessStates) {
-          //todo:success
-          var sourcesList = state.sourcesList;
-          return SourceWidget(sourcesList: sourcesList);
+    return BlocProvider(
+      ///BlocBuilder<BlocA, BlocAState>
+      ///BlocProvider=>create the bloc that I use it=> viewModel type of the bloc SourceViewModel
+      /// we use:
+      /// 1-BlocProvider=>When there is more then one screens use the bloc like theme and language
+      /// 2-bloc:viewModel=>When there is only one screen use the bloc
+      /// Note/we cant use it together
+    create: ( context)=>viewModel,
+    child: BlocBuilder<SourceViewModel, SourceStates>(
+      // bloc: viewModel,
+        builder: (context, state) {
+          ///state object from the parent
+          ///to check the object type =>is
+          if (state is SourceLoadingStates) {
+            //todo:loading
+            return MainLoadingWidget();
+          } else if (state is SourceErrorStates) {
+            //TODO:error
+            return MainErrorWidget(
+                errorMessage: state.errorMessage,
+                onPressed: () {
+                  //todo:try again
+                  viewModel.getSources(widget.category.id);
+                }
+            );
+          } else if (state is SourceSuccessStates) {
+            //todo:success
+            var sourcesList = state.sourcesList;
+            return SourceWidget(sourcesList: sourcesList);
 
-        }
-        return Container();///unreachable
-      },
+          }
+          return Container();///unreachable
+        },
 
+      ),
     );
     //   FutureBuilder<SourceResponse>(
     //     future: ApiManager.getSources(widget.category.id),
