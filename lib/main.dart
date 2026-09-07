@@ -6,6 +6,7 @@ import 'package:hive_ce/hive.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:news_app/api/model/source/source.dart';
 import 'package:news_app/api/model/source/source_response.dart';
+import 'package:news_app/hive_registrar.g.dart';
 import 'package:news_app/providers/app_language_provider.dart';
 import 'package:news_app/providers/app_theme_provider.dart';
 import 'package:news_app/ui/home/home_screen.dart';
@@ -20,13 +21,16 @@ import 'l10n/app_localizations.dart';
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  ///First way:
+  ///First way:Hive ce flutter
   // await Hive.initFlutter();///Initialize hive=>know the place where data will save
   ///Second way=>path provider package
   final Directory docDir = await getApplicationDocumentsDirectory();///Determining the path to save the data in it
   Hive.init(docDir.path);
-  Hive.registerAdapter(SourceResponseAdapter());
-  Hive.registerAdapter(SourceAdapter());
+  ///If I use hive generator
+  // Hive.registerAdapter(SourceResponseAdapter());
+  // Hive.registerAdapter(SourceAdapter());
+  ///If I use hive ce generator
+  Hive.registerAdapters();
 
   runApp(
       MultiProvider(providers: [
