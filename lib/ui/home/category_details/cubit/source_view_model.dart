@@ -2,20 +2,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/data/repository/sources/data_sources/remote/impl/source_remote_data_source_impl.dart';
-import 'package:news_app/data/repository/sources/data_sources/remote/source_remote_data_source.dart';
 import 'package:news_app/data/repository/sources/repository/impl/source_repository_impl.dart';
 import 'package:news_app/data/repository/sources/repository/source_repository.dart';
 import 'package:news_app/ui/home/category_details/cubit/source_states.dart';
 ///[ApiManager] ──> [SourceRemoteDataSourceImpl] ──> [SourceRepositoryImpl] ──> [SourceViewModel] ──> [UI States]
 class  SourceViewModel extends Cubit<SourceStates>{
-   late SourceRepository sourceRepository;///object from interface
-   late SourceRemoteDataSource remoteDataSource;///object from interface
-   late ApiManager apiManager;
-  SourceViewModel():super(SourceLoadingStates()){
+  ///SourceViewModel wants to know only the repository , there is no need to create object from the data source and apiManager
+  ///Constructor Injection=>only create object from the class that the viewmodel cares about(SourceRepository  ) and pass it in the constructor
+    SourceRepository sourceRepository;///object from interface
+   // late SourceRemoteDataSource remoteDataSource;///object from interface
+   // late ApiManager apiManager;
+  SourceViewModel({required this.sourceRepository}):super(SourceLoadingStates()){
     ///The order if creating the objects is important(Dependency Chain)=>every object depends on the previous
-    apiManager=ApiManager();
-    remoteDataSource=SourceRemoteDataSourceImpl(apiManager: apiManager);///creating object from the subclasses=>polymorphism
-    sourceRepository=SourceRepositoryImpl(remoteDataSource: remoteDataSource);///creating object from the subclasses=>polymorphism
+    // apiManager=ApiManager();
+    // remoteDataSource=SourceRemoteDataSourceImpl(apiManager: apiManager);///creating object from the subclasses=>polymorphism
+    // sourceRepository=SourceRepositoryImpl(remoteDataSource: remoteDataSource);///creating object from the subclasses=>polymorphism
   }///super(initial state=>Loading)
 //todo:view model=>hold data/handle logic
 ///hold data in source state class or here (view model)

@@ -7,7 +7,9 @@ import 'package:news_app/data/repository/news/repository/news_repository.dart';
 class NewsRepositoryImpl implements NewsRepository{
   ///object from its twin the interface(repository=>data source)
   NewsRemoteDataSource remoteDataSource;
-  NewsRepositoryImpl({required this.remoteDataSource});
+  NewsRepositoryImpl({required this.remoteDataSource});///constructor injection
+  ///constructor injection:
+  ///Class depends on another class so we create object from it and pass it in constructor
   @override
   Future<NewsResponse> getNewsBySourceId(String sourceId) {
   return remoteDataSource.getNewsBySourceId(sourceId);
