@@ -1,22 +1,23 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news_app/api/api_constants.dart';
 import 'package:news_app/api/end_points.dart';
 import 'package:news_app/api/model/news/news_response.dart';
 import 'package:news_app/api/model/source/source_response.dart';
-
+@singleton
 class ApiManager {
   ///private constructor=>no one outside this class can create object from it
-  ApiManager._();
-  static ApiManager? _instance;
-  static ApiManager getInstance(){
-    // if(_instance==null){
-    //   _instance=ApiManager();
-    // }
-    _instance ??= ApiManager._();
-    return _instance!;
-  }
+  // ApiManager._();
+  // static ApiManager? _instance;
+  // static ApiManager getInstance(){
+  //   // if(_instance==null){
+  //   //   _instance=ApiManager();
+  //   // }
+  //   _instance ??= ApiManager._();
+  //   return _instance!;
+  // }
   /*https://newsapi.org/v2/top-headlines/sources?apiKey=
   864cbf8e0e4e451da80a4f3b02de5cf9
   */

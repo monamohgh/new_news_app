@@ -8,10 +8,12 @@ import 'package:news_app/utils/app_routes.dart';
 import 'package:news_app/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'data/di/di_inject.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
+  configureDependencies();
   runApp(
       MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => AppLanguageProvider(),),

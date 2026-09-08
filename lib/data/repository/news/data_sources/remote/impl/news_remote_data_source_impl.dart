@@ -1,8 +1,10 @@
 //todo:news remote ds =>impl
+import 'package:injectable/injectable.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/api/model/news/news_response.dart';
 import 'package:news_app/data/repository/news/data_sources/remote/news_remote_data_source.dart';
 //todo:http
+@Injectable(as:NewsRemoteDataSource )
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   ApiManager apiManager;
   NewsRemoteDataSourceImpl({required this.apiManager});
