@@ -45,6 +45,7 @@ dependencies:
   cached_network_image: ^3.4.1
   webview_flutter: ^4.14.1
   flutter_bloc: ^9.1.1
+  injectable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
