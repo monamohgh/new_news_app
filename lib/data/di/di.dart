@@ -19,11 +19,11 @@ SourceRepository injectSourceRepository(){///function type is interface class
   return SourceRepositoryImpl(remoteDataSource: injectSourceRemoteDataSource());///return type impl class
 }
 SourceRemoteDataSource injectSourceRemoteDataSource(){
-  return SourceRemoteDataSourceImpl(apiManager: injectApiManager());
+  return SourceRemoteDataSourceImpl(apiManager: ApiManager.getInstance());
 }
-ApiManager injectApiManager(){
-  return ApiManager();
-}
+// ApiManager injectApiManager(){
+//   return ApiManager();
+// }
 //todo:NewsView => Object  NewsViewModel
 //todo:NewsViewModel => Object  NewsRepository
 //todo:NewsRepository => Object  NewsRemoteDs
@@ -32,5 +32,5 @@ NewsRepository injectNewsRepository(){
   return NewsRepositoryImpl(remoteDataSource: injectNewsRemoteDataSource());
 }
 NewsRemoteDataSource injectNewsRemoteDataSource(){
-  return NewsRemoteDataSourceImpl(apiManager: injectApiManager());
+  return NewsRemoteDataSourceImpl(apiManager: ApiManager.getInstance());
 }
